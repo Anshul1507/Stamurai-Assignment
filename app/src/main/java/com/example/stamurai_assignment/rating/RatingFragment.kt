@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.example.stamurai_assignment.MainActivity
 import com.example.stamurai_assignment.R
 import com.example.stamurai_assignment.databinding.FragmentRatingBinding
 
 
 /**
- * A simple [Fragment] subclass.
+ * Created on 05-04-2020
+ * By Anshul1507
  */
 class RatingFragment : Fragment() {
 
@@ -24,9 +26,7 @@ class RatingFragment : Fragment() {
             inflater,
             R.layout.fragment_rating,container,false
         )
-
-
-
+        binding.textRating.text = "Rating bw ${MainActivity.minRating} - ${MainActivity.maxRating}"
         return binding.root
     }
 

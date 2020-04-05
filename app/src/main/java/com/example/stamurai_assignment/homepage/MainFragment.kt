@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import com.example.stamurai_assignment.MainActivity
 import com.example.stamurai_assignment.R
 import com.example.stamurai_assignment.databinding.FragmentMainBinding
-import com.google.android.material.button.MaterialButton
-import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * Created on 05-04-2020
@@ -81,11 +81,13 @@ class MainFragment : Fragment() {
         }
 
         binding.btnRating.setOnClickListener {
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            MainActivity.minRating = minRating.toString()
+            MainActivity.maxRating = maxRating.toString()
+            it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToRatingFragment())
         }
 
         binding.btnPastRating.setOnClickListener {
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToHistoryFragment())
         }
         return binding.root
     }
