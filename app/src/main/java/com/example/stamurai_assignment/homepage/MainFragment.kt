@@ -1,19 +1,25 @@
 package com.example.stamurai_assignment.homepage
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.stamurai_assignment.R
 import com.example.stamurai_assignment.databinding.FragmentMainBinding
+import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
- * A simple [Fragment] subclass.
+ * Created on 05-04-2020
+ * By Anshul1507
  */
 class MainFragment : Fragment() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,9 +29,64 @@ class MainFragment : Fragment() {
             inflater,
             R.layout.fragment_main,container,false
         )
+        var minRating: Int? = 0
+        var maxRating: Int? = 9
 
+        binding.btnRating.text = "Rating $minRating - $maxRating"
 
+        binding.btnMinMinus.setOnClickListener {
+            if(minRating!! > 0){
+                minRating--
+                binding.btnRating.text = "Rating $minRating - $maxRating"
+            }else {
+                Toast.makeText(context, "Rating can't be less than 0", Toast.LENGTH_SHORT).show()
+            }
+        }
 
+        binding.btnMinPlus.setOnClickListener {
+            if(minRating!! < 9){
+                if(minRating<maxRating!!-1){
+                    minRating++
+                }else{
+                    Toast.makeText(context, "Rating difference should be greater than or equal to one", Toast.LENGTH_SHORT).show()
+                }
+
+                binding.btnRating.text = "Rating $minRating - $maxRating"
+            }else {
+                Toast.makeText(context, "Rating can't be more than 9", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnMaxMinus.setOnClickListener {
+            if(maxRating!! > 0){
+                if(maxRating>minRating!!+1){
+                    maxRating--
+                }else{
+                    Toast.makeText(context, "Rating difference should be greater than or equal to one", Toast.LENGTH_SHORT).show()
+                }
+
+                binding.btnRating.text = "Rating $minRating - $maxRating"
+            }else {
+                Toast.makeText(context, "Rating can't be less than 0", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnMaxPlus.setOnClickListener {
+            if(maxRating!! < 9){
+                maxRating++
+                binding.btnRating.text = "Rating $minRating - $maxRating"
+            }else {
+                Toast.makeText(context, "Rating can't be more than 9", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.btnRating.setOnClickListener {
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnPastRating.setOnClickListener {
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+        }
         return binding.root
     }
 

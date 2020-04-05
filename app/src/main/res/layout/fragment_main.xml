@@ -12,22 +12,24 @@
         android:layout_height="match_parent"
         tools:context=".homepage.MainFragment">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_rating"
-            android:layout_width="match_parent"
+
+
+        <TextView
+            android:id="@+id/text_rating_min"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/StyleButtons"
-            android:padding="16dp"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
-            android:text="@string/rating"
-            android:layout_centerInParent="true"
-            android:textSize="20sp"/>
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Set minimum rating"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_below="@id/btn_rating"
-            android:id="@+id/btn_minus_rating"
+            android:layout_below="@id/text_rating_min"
+            android:id="@+id/btn_min_minus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/StyleButtons"
@@ -37,8 +39,8 @@
             android:textSize="28sp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_plus_rating"
-            android:layout_below="@id/btn_rating"
+            android:id="@+id/btn_min_plus"
+            android:layout_below="@id/text_rating_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/StyleButtons"
@@ -47,6 +49,55 @@
             android:gravity="center"
             android:text="@string/plus"
             android:textSize="28sp"/>
+
+        <TextView
+            android:id="@+id/text_rating_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Set maximum rating"
+            android:textStyle="bold"
+            android:layout_below="@id/btn_min_minus"
+            android:textSize="20sp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_below="@id/text_rating_max"
+            android:id="@+id/btn_max_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/StyleButtons"
+            android:gravity="center"
+            android:layout_marginStart="48dp"
+            android:text="@string/minus"
+            android:textSize="28sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_max_plus"
+            android:layout_below="@id/text_rating_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/StyleButtons"
+            android:layout_marginEnd="48dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="@string/plus"
+            android:textSize="28sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/StyleButtons"
+            android:layout_below="@id/btn_max_minus"
+            android:padding="16dp"
+            android:layout_margin="32dp"
+            android:text="@string/rating"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_past_rating"
