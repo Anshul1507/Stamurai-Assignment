@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import com.example.stamurai_assignment.MainActivity
 import com.example.stamurai_assignment.R
 import com.example.stamurai_assignment.databinding.FragmentMainBinding
-import kotlin.math.max
 
 /**
  * Created on 05-04-2020

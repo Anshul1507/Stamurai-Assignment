@@ -1,29 +1,20 @@
 package com.example.stamurai_assignment.rating
 
-import android.content.Context
-import android.graphics.PorterDuff
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.stamurai_assignment.MainActivity
 import com.example.stamurai_assignment.R
-import com.example.stamurai_assignment.database.Rating
 import com.example.stamurai_assignment.database.RatingDatabase
-import com.example.stamurai_assignment.database.RatingDatabaseDao
 import com.example.stamurai_assignment.databinding.FragmentRatingBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_rating.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
 
 /**
  * Created on 05-04-2020

@@ -1,12 +1,10 @@
 package com.example.stamurai_assignment.history
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.example.stamurai_assignment.MainActivity
 
 import com.example.stamurai_assignment.database.Rating
 import com.example.stamurai_assignment.database.RatingDatabaseDao
@@ -31,7 +29,6 @@ class PastDataViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var tonight = MutableLiveData<Rating?>()
     private val ratings = database.getAllRatings()
 
     val clearButtonVisible = Transformations.map(ratings){
