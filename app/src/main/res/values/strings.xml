@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Stamurai-Assignment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="see_all_past_ratings">See all past ratings</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="rating">Rating</string>
+    <string name="give_your_ratings">Give your ratings</string>
+</resources>
