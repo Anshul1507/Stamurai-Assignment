@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.stamurai_assignment.MainActivity
 import com.example.stamurai_assignment.R
@@ -18,6 +19,7 @@ import com.example.stamurai_assignment.database.Rating
 import com.example.stamurai_assignment.database.RatingDatabase
 import com.example.stamurai_assignment.database.RatingDatabaseDao
 import com.example.stamurai_assignment.databinding.FragmentRatingBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_rating.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -44,7 +46,6 @@ class RatingFragment : Fragment(), SeekBar.OnSeekBarChangeListener{
         val application = requireNotNull(this.activity).application
         binding.sliderRating.max = MainActivity.ratingRange.second.toInt() - MainActivity.ratingRange.first.toInt()
 
-        binding.sliderRating.progressDrawable.setColorFilter(ContextCompat.getColor(context!!,R.color.colorAccent), PorterDuff.Mode.SRC_ATOP)
 
         binding.sliderRating.setOnSeekBarChangeListener(this)
 
@@ -58,6 +59,18 @@ class RatingFragment : Fragment(), SeekBar.OnSeekBarChangeListener{
             ).get(RatingViewModel::class.java)
 
         binding.ratingViewModel = viewModel
+
+        viewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
+            if(it == true){
+                Snackbar.make(
+                    activity!!.findViewById(android.R.id.content),
+                    getString(R.string.saved_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                binding.sliderRating.progress = 0
+                viewModel.doneShowingSnackbar()
+            }
+        })
 
 
         binding.labelRating.text = "Give Rating b/w ${MainActivity.ratingRange.first} - ${MainActivity.ratingRange.second}"
@@ -80,5 +93,7 @@ class RatingFragment : Fragment(), SeekBar.OnSeekBarChangeListener{
     override fun onStopTrackingTouch(p0: SeekBar?) {
 
     }
+
+
 }
 

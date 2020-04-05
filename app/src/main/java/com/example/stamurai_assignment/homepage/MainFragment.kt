@@ -2,16 +2,17 @@ package com.example.stamurai_assignment.homepage
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.stamurai_assignment.MainActivity
 import com.example.stamurai_assignment.R
 import com.example.stamurai_assignment.databinding.FragmentMainBinding
+import kotlin.math.max
 
 /**
  * Created on 05-04-2020
@@ -33,11 +34,14 @@ class MainFragment : Fragment() {
         var maxRating: Int? = 9
 
         binding.btnRating.text = "Rating $minRating - $maxRating"
+        binding.textMin.text = minRating.toString()
+        binding.textMax.text = maxRating.toString()
 
         binding.btnMinMinus.setOnClickListener {
             if(minRating!! > 0){
                 minRating--
                 binding.btnRating.text = "Rating $minRating - $maxRating"
+                binding.textMin.text = minRating.toString()
             }else {
                 Toast.makeText(context, "Rating can't be less than 0", Toast.LENGTH_SHORT).show()
             }
@@ -47,11 +51,13 @@ class MainFragment : Fragment() {
             if(minRating!! < 9){
                 if(minRating<maxRating!!-1){
                     minRating++
+
                 }else{
                     Toast.makeText(context, "Rating difference should be greater than or equal to one", Toast.LENGTH_SHORT).show()
                 }
 
                 binding.btnRating.text = "Rating $minRating - $maxRating"
+                binding.textMin.text = minRating.toString()
             }else {
                 Toast.makeText(context, "Rating can't be more than 9", Toast.LENGTH_SHORT).show()
             }
@@ -66,6 +72,7 @@ class MainFragment : Fragment() {
                 }
 
                 binding.btnRating.text = "Rating $minRating - $maxRating"
+                binding.textMax.text = maxRating.toString()
             }else {
                 Toast.makeText(context, "Rating can't be less than 0", Toast.LENGTH_SHORT).show()
             }
@@ -75,6 +82,7 @@ class MainFragment : Fragment() {
             if(maxRating!! < 9){
                 maxRating++
                 binding.btnRating.text = "Rating $minRating - $maxRating"
+                binding.textMax.text = maxRating.toString()
             }else {
                 Toast.makeText(context, "Rating can't be more than 9", Toast.LENGTH_SHORT).show()
             }
@@ -83,9 +91,6 @@ class MainFragment : Fragment() {
         binding.btnRating.setOnClickListener {
 
             MainActivity.ratingRange = Pair(minRating.toString(),maxRating.toString())
-
-//                first = minRating.toString()
-//            MainActivity.ratingRange.second = maxRating.toString()
             it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToRatingFragment())
         }
 

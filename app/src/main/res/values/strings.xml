@@ -10,4 +10,13 @@
     <string name="give_your_ratings">Give your ratings</string>
     <string name="submit_rating">Submit Rating</string>
     <string name="rating_is">Rating is:</string>
+
+    <!-- Output to TextView styled with a little HTML -->
+    <string name="title"><![CDATA[<h3>HERE IS YOUR PAST DATA</h3>]]></string>
+    <string name="time"><![CDATA[<b>Date and Time:</b>]]></string>
+    <string name="rating_total"><![CDATA[<b>Rating:</b>]]></string>
+    <string name="clear_data">Clear Data</string>
+
+    <string name="cleared_message">All your data is gone forever.</string>
+    <string name="saved_message">Your rating has been saved.</string>
 </resources>

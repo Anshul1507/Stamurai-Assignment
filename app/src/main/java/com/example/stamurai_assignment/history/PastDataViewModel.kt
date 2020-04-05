@@ -1,18 +1,24 @@
-package com.example.stamurai_assignment.rating
+package com.example.stamurai_assignment.history
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.stamurai_assignment.MainActivity
+
 import com.example.stamurai_assignment.database.Rating
 import com.example.stamurai_assignment.database.RatingDatabaseDao
+import com.example.stamurai_assignment.formatNights
 import kotlinx.coroutines.*
-import java.util.*
 
+/**
+ * Created on 05-04-2020
+ * By Anshul1507
+ */
 
-class RatingViewModel(
+class PastDataViewModel(
         val database: RatingDatabaseDao,
         application: Application) : AndroidViewModel(application) {
 
@@ -25,13 +31,16 @@ class RatingViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun onStartTracking() {
-        uiScope.launch {
-            val newRating = Rating()
-            newRating.totalRating = MainActivity.rating.toInt()
-            insertAndUpdate(newRating)
-        }
+    private var tonight = MutableLiveData<Rating?>()
+    private val ratings = database.getAllRatings()
+
+    val clearButtonVisible = Transformations.map(ratings){
+        it?.isNotEmpty()
     }
+    val nightsString = Transformations.map(ratings){
+        formatNights(it,application.resources)
+    }
+
 
     private var _showSnackbarEvent = MutableLiveData<Boolean>()
     val showSnackBarEvent: LiveData<Boolean>
@@ -40,21 +49,19 @@ class RatingViewModel(
     fun doneShowingSnackbar() {
         _showSnackbarEvent.value = false
     }
-    private suspend fun insertAndUpdate(rating: Rating){
-        withContext(Dispatchers.IO){
-            database.insert(rating)
-            
-            MainActivity.key = rating.ratingId.toString()
-            snackBar()
-            Log.i(">>",rating.toString())
-        }
-    }
 
-
-    fun snackBar() {
+    fun onClear() {
         uiScope.launch {
+            clear()
             _showSnackbarEvent.value = true
         }
     }
+
+    private suspend fun clear(){
+        withContext(Dispatchers.IO){
+            database.clear()
+        }
+    }
+
 }
 

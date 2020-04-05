@@ -34,6 +34,8 @@
         tools:layout="@layout/fragment_rating" >
         <action
             android:id="@+id/action_ratingFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
