@@ -7,10 +7,10 @@ import androidx.room.*
 interface RatingDatabaseDao{
 
     @Insert
-    fun insert(night: Rating)
+    fun insert(rating: Rating)
 
     @Update
-    fun update(night: Rating)
+    fun update(rating: Rating)
 
     @Query("SELECT * from rating_table WHERE ratingId = :key")
     fun get(key:Long): Rating?

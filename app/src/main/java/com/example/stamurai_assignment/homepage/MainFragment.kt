@@ -81,8 +81,11 @@ class MainFragment : Fragment() {
         }
 
         binding.btnRating.setOnClickListener {
-            MainActivity.minRating = minRating.toString()
-            MainActivity.maxRating = maxRating.toString()
+
+            MainActivity.ratingRange = Pair(minRating.toString(),maxRating.toString())
+
+//                first = minRating.toString()
+//            MainActivity.ratingRange.second = maxRating.toString()
             it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToRatingFragment())
         }
 

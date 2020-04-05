@@ -7,8 +7,8 @@ import androidx.annotation.IntegerRes
 class MainActivity : AppCompatActivity() {
 
     companion object{
-        var minRating: String = String()
-        var maxRating: String = String()
+        var ratingRange: Pair<String,String> = Pair(String(),String())
+        var rating:String = String()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

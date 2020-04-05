@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Rating::class],version = 1,exportSchema = false)
 abstract class RatingDatabase : RoomDatabase() {
-    abstract val sleepDatabaseDao: RatingDatabaseDao
+    abstract val ratingDatabaseDao: RatingDatabaseDao
 
     companion object{
 

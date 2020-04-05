@@ -8,4 +8,6 @@
     <string name="minus">-</string>
     <string name="rating">Rating</string>
     <string name="give_your_ratings">Give your ratings</string>
+    <string name="submit_rating">Submit Rating</string>
+    <string name="rating_is">Rating is:</string>
 </resources>
